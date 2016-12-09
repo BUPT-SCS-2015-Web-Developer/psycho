@@ -1,0 +1,43 @@
+
+
+* {
+    font-family:"Microsoft YaHei","Microsoft Yahei","微软雅黑",微软雅黑,"SimHei","Simhei","黑体",黑体,arial;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.logo {
+    position:relative;
+    left:-2px;
+    top:9px;
+    height:40px;
+    width:40px;
+}
+
+#user {
+    position:relative;
+    top:9px;
+    height:40px;
+    width:40px;
+}
+
+
+
+#terms,#instruction{
+    position:absolute;
+    width:90%;
+    max-height:90%;
+    top:5%;
+    left:5%;
+    margin:0 auto;
+    text-align:center;
+    display: none;
+}
