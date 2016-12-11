@@ -9,6 +9,51 @@
     include ('assets/API/db_config.php');
 
 //    $yibanID = $_SESSION['yibanID'];
+    if(isset($_POST['fProblem1']))
+        $fProblem1 = $_POST['fProblem1'];
+    else {
+        $fProblem1 = null;
+    }
+    if(isset($_POST['fProblem2']))
+        $fProblem2 = $_POST['fProblem2'];
+    else {
+        $fProblem2 = null;
+    }
+    if(isset($_POST['fProblem3']))
+        $fProblem3 = $_POST['fProblem3'];
+    else {
+        $fProblem3 = null;
+    }
+    if(isset($_POST['fProblem4']))
+        $fProblem4 = $_POST['fProblem4'];
+    else {
+        $fProblem4 = null;
+    }
+    if(isset($_POST['fProblem5']))
+        $fProblem5 = $_POST['fProblem5'];
+    else {
+        $fProblem5 = null;
+    }
+    if(isset($_POST['fProblem6']))
+        $fProblem6 = $_POST['fProblem6'];
+    else {
+        $fProblem6 = null;
+    }
+    if(isset($_POST['fProblem7']))
+        $fProblem7 = $_POST['fProblem7'];
+    else {
+        $fProblem7 = null;
+    }
+    if(isset($_POST['fProblem8']))
+        $fProblem8 = $_POST['fProblem8'];
+    else {
+        $fProblem8 = null;
+    }
+    if(isset($_POST['fProblem9']))
+        $fProblem9 = $_POST['fProblem9'];
+    else {
+        $fProblem9 = null;
+    }
 
     $a = array (
             'fName' => addslashes($_POST['fName']),
@@ -27,6 +72,15 @@
             'fFamilyAtmosphere' => addslashes($_POST['fFamilyAtmosphere']),
             'fCommunication' => addslashes($_POST['fCommunication']),
             'fRelationship' => addslashes($_POST['fRelationship']),
+            'fProblem1' => addslashes($fProblem1),
+            'fProblem2' => addslashes($fProblem2),
+            'fProblem3' => addslashes($fProblem3),
+            'fProblem4' => addslashes($fProblem4),
+            'fProblem5' => addslashes($fProblem5),
+            'fProblem6' => addslashes($fProblem6),
+            'fProblem7' => addslashes($fProblem7),
+            'fProblem8' => addslashes($fProblem8),
+            'fProblem9' => addslashes($fProblem9),
             'fProblemOther' => addslashes($_POST['fProblemOther']),
             'fReason' => addslashes($_POST['fReason']),
             'fEducation' => addslashes($_POST['fEducation']),
@@ -69,17 +123,11 @@
     $s = substr($s, 0, -1);
 
     $result = $db->query($s);
-    if (!$result)
+    if(!$result)
     {
-    echo $s;
-    echo $db->error;
-    die;
+        echo $db->error;
+        die;
     }
     else {
-    echo "1";
+        echo "提交成功！";
     }
-
-
-
-
-echo $s;

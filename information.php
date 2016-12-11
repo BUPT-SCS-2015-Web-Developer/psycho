@@ -1,9 +1,3 @@
-<?php
-
-	$con = mysqli_connect('localhost', 'root', 'jmy5zhentan5') or die ("不能连接数据库:");
-	mysqli_select_db($con,'psychology');
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -314,6 +308,6 @@
 
 
   <!--  Scripts-->
-  <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="assets/js/materialize.min.js"></script>
   <script type="text/javascript" src="assets/js/getexcel.js"></script>
