@@ -1,10 +1,3 @@
-<?php
-
-	$con = mysqli_connect('localhost', 'root', 'jmy5zhentan5') or die ("不能连接数据库:");
-	mysqli_select_db($con,'psychology');
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +26,7 @@
       </ul>
     </div>
   </nav>
- <br/> 
+ <br/>
     <div class="row container">
     <div class="col s12">
     <ul class="tabs">
@@ -41,7 +34,7 @@
       <li class="tab col s6"><a href="#test2">所有预约记录</a></li>
     </ul>
     </div>
-    <div id="test1" class="col s12">	
+    <div id="test1" class="col s12">
     <ul class="collapsible" data-collapsible="expandable">
      <li>
        <div class="collapsible-header teal lighten-5">Monday</div>
@@ -61,7 +54,7 @@
 	$num_result = mysqli_num_rows($result);
 	for ($i=0;$i<$num_result;$i++) {
 		$row = mysqli_fetch_row($result);
-        ?>  
+        ?>
                     <tr class="hoverable">
                         <td><?php echo $row[1]?></td>
                         <td><?php echo $row[2]?></td>
@@ -79,9 +72,9 @@
                           </div>
 						</td>
                     </tr>
-			<?php		
+			<?php
         }
-?>     
+?>
      	    </tbody>
             </table>
 	   </div>
@@ -89,7 +82,7 @@
 
 	 <li>
        <div class="collapsible-header teal lighten-4">Tuesday</div>
-       <div class="collapsible-body">	
+       <div class="collapsible-body">
             <table class="hoverable">
                 <thead>
                     <tr>
@@ -105,7 +98,7 @@
 	$num_result = mysqli_num_rows($result);
 	for ($i=0;$i<$num_result;$i++) {
 		$row = mysqli_fetch_row($result);
-        ?>  
+        ?>
                     <tr class="hoverable">
                         <td><?php echo $row[1]?></td>
                         <td><?php echo $row[2]?></td>
@@ -123,17 +116,17 @@
                           </div>
 						</td>
                     </tr>
-			<?php		
+			<?php
         }
-?>     
+?>
      	   </tbody>
              </table>
 	   </div>
      </li>
-	 
+
 	 <li>
        <div class="collapsible-header teal lighten-3">Wednesday</div>
-       <div class="collapsible-body">	
+       <div class="collapsible-body">
             <table class="hoverable">
                 <thead>
                     <tr>
@@ -149,7 +142,7 @@
 	$num_result = mysqli_num_rows($result);
 	for ($i=0;$i<$num_result;$i++) {
 		$row = mysqli_fetch_row($result);
-        ?>  
+        ?>
                     <tr class="hoverable">
                         <td><?php echo $row[1]?></td>
                         <td><?php echo $row[2]?></td>
@@ -167,14 +160,14 @@
                           </div>
 						</td>
                     </tr>
-			<?php		
+			<?php
         }
-?>     
+?>
      	   </tbody>
              </table>
 	   </div>
      </li>
-	 
+
 	 <li>
        <div class="collapsible-header teal lighten-2">Thursday</div>
        <div class="collapsible-body">
@@ -194,7 +187,7 @@
 	for ($i=0;$i<$num_result;$i++) {
 		$row = mysqli_fetch_row($result);
 	//	$model=$row[0];
-        ?>  
+        ?>
                     <tr class="hoverable">
                         <td><?php echo $row[1]?></td>
                         <td><?php echo $row[2]?></td>
@@ -212,17 +205,17 @@
                           </div>
 						</td>
                     </tr>
-			<?php		
+			<?php
         }
-?>     
+?>
      	   </tbody>
              </table>
 	   </div>
      </li>
-	 
+
 	 <li>
        <div class="collapsible-header teal lighten-1">Friday</div>
-       <div class="collapsible-body">	
+       <div class="collapsible-body">
             <table class="hoverable">
                 <thead>
                     <tr>
@@ -238,7 +231,7 @@
 	$num_result = mysqli_num_rows($result);
 	for ($i=0;$i<$num_result;$i++) {
 		$row = mysqli_fetch_row($result);
-        ?>  
+        ?>
                     <tr class="hoverable">
                         <td><?php echo $row[1]?></td>
                         <td><?php echo $row[2]?></td>
@@ -256,16 +249,16 @@
                           </div>
 						</td>
                     </tr>
-			<?php		
+			<?php
         }
-?>     
+?>
      	   </tbody>
              </table>
 	   </div>
      </li>
     </ul>
 	</div>
-	
+
     <div id="test2" class="col s12">
 
             <table class="hoverable">
@@ -285,7 +278,7 @@
 	$num_result = mysqli_num_rows($result);
 	for ($i=0;$i<$num_result;$i++) {
 		$row = mysqli_fetch_row($result);
-        ?>  
+        ?>
                     <tr class="hoverable">
                         <td><?php echo $row[1]?></td>
                         <td><?php echo $row[2]?></td>
@@ -294,9 +287,9 @@
 						<td>未完成（or）已完成</td>
 						<td><a class="waves-effect waves-teal btn-flat" href="information.php?id=<?php echo $row[0]?>">信息详情</a></td>
                     </tr>
-			<?php		
+			<?php
         }
-?>     
+?>
      	   </tbody>
              </table>
 
@@ -305,7 +298,7 @@
 </body>
 
 
-  
+
 
   <footer class="page-footer orange">
     <div class="footer-copyright">
