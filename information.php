@@ -4,7 +4,6 @@
 	mysqli_select_db($con,'psychology');
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,9 +32,9 @@
       </ul>
     </div>
   </nav>
-  
-  
-<div class="container"> 
+
+
+<div class="container">
    <ul class="collapsible popout" data-collapsible="expandable">
      <li>
        <div class="collapsible-header teal lighten-5 active">基本信息</div>
@@ -91,10 +90,10 @@
         <p>First Line</p>
         <a href="#!" class="secondary-content"><i class="mdi-action-grade"></i></a>
       </li>
-    </ul>	   
+    </ul>
 	   </div>
      </li>
-	 
+
      <li>
        <div class="collapsible-header teal lighten-3"><i class="mdi-maps-place"></i>学生情况</div>
        <div class="collapsible-body">
@@ -172,7 +171,7 @@
     </ul>
 	   </div>
      </li>
-	 
+
      <li>
        <div class="collapsible-header teal lighten-1"><i class="mdi-social-whatshot"></i>自我评估</div>
        <div class="collapsible-body">
@@ -287,7 +286,7 @@
      </li>
    </ul>
 </div>
-  
+
 
       <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
     <a class="btn-floating btn-large red">
@@ -299,11 +298,11 @@
     </ul>
   </div>
 
-  
+
 </body>
 
 
-  
+
 
   <footer class="page-footer orange">
     <div class="footer-copyright">
