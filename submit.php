@@ -54,6 +54,10 @@
     else {
         $fProblem9 = null;
     }
+    if($_POST['fReason'] == "其他")
+        $fReason = addslashes($_POST['fReasonOther']);
+    else
+        $fReason = addslashes($_POST['fReason']);
 
     $a = array (
             'fName' => addslashes($_POST['fName']),
@@ -62,7 +66,8 @@
             'fBirthday' => addslashes($_POST['fBirthday']),
             'fSchool' => addslashes($_POST['fSchool']),
             'fGrade' => addslashes($_POST['fGrade']),
-            'fNation' => addslashes($_POST['fPhone']),
+            'fNation' => addslashes($_POST['fNation']),
+            'fPhone' => addslashes($_POST['fPhone']),
             'fMarried' => addslashes($_POST['fMarried']),
             'fAddress' => addslashes($_POST['fAddress']),
             'fChildType' => addslashes($_POST['fChildType']),
@@ -82,10 +87,11 @@
             'fProblem8' => addslashes($fProblem8),
             'fProblem9' => addslashes($fProblem9),
             'fProblemOther' => addslashes($_POST['fProblemOther']),
-            'fReason' => addslashes($_POST['fReason']),
+            'fReason' => $fReason,
             'fEducation' => addslashes($_POST['fEducation']),
             'fBigEvent' => addslashes($_POST['fBigEvent']),
             'fMentalIllness' => addslashes($_POST['fMentalIllness']),
+            'fTreatment' => addslashes($_POST['fTreatment']),
             'fQ1' => addslashes($_POST['fQ1']),
             'fQ2' => addslashes($_POST['fQ2']),
             'fQ3' => addslashes($_POST['fQ3']),
