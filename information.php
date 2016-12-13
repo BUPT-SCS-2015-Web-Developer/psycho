@@ -43,8 +43,7 @@
       </ul>
     </div>
     <div class="nav-wrapper hide-on-large-only">
-        <a href="#" class="brand-logo">
-            <img class="logo circle" src="assets/img/logo.png">心理咨询预约</a>
+        <a href="#" class="brand-logo">心理咨询预约</a>
       <ul class="left">
         <li><a href="#"><img id="user" class="circle" src="assets/img/user.png"></a></li>
       </ul>
@@ -327,19 +326,15 @@
      </li>
    </ul>
 </div>
-
-
-      <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
     <a class="btn-floating btn-large red">
       操作
     </a>
     <ul>
       <li><a class="btn-floating green" href="admindex.php">返回首页</a></li>
-      <li><a class="btn-floating yellow darken-1">导出表格</a></li>
+      <li><a class="btn-floating yellow darken-1" href="getexcel.php">导出表格</a></li>
     </ul>
   </div>
-
-
 </body>
 
 

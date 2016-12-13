@@ -1,8 +1,18 @@
 <?php
-    ini_set("display_errors", "On");
-    error_reporting(E_ALL | E_STRICT);
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
     session_start();
     date_default_timezone_set('Asia/Shanghai');
+    include ('assets/API/db_config.php');
+
+    $db = new mysqli($db_host,$db_user,$db_password,$db_database);
+    if (!$db)
+    {
+        exit('Could not connect: ' . mysql_error());
+    }
+    $db->query("set names 'utf8'");
+    $sql_query = "SELECT * FROM psycho";
+    $result = $db->query($sql_query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,15 +27,15 @@
 <body>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container hide-on-med-and-down">
-        <a href="#" class="brand-logo">
-            <img class="logo circle" src="">心理咨询预约</a>
+        <a href="#" class="brand-logo"></a>
+<!--            <img class="logo circle" src="">心理咨询预约</a>-->
       <ul class="right">
         <li><a href="#">个人中心</a></li>
       </ul>
     </div>
     <div class="nav-wrapper hide-on-large-only">
         <a href="#" class="brand-logo">
-            <img class="logo circle" src="">心理咨询预约</a>
+    <!--        <img class="logo circle" src="">-->心理咨询预约</a>
       <ul class="left">
         <li><a href="#"><img id="user" class="circle" src=""></a></li>
       </ul>
@@ -48,28 +58,32 @@
                 <thead>
                     <tr>
                         <th data-field="id">姓名</th>
-                        <th data-field="name">联系方式</th>
-                        <th data-field="price">预约时间</th>
+                        <th data-field="name">学号</th>
+                        <th data-field="price">联系方式</th>
                     </tr>
                 </thead>
                 <tbody class="hoverable">
-                    <tr class="hoverable">
-                        <td>1</td>
-                        <td>2</td>
-                        <td>3</td>
-						<td><a class="waves-effect waves-teal btn-flat" href="information.php?id=<?php echo 1;?>">信息详情</a></td>
-						<td><a class="waves-effect waves-teal btn-flat modal-trigger" href="#model1">成功预约</a>
-						  <div id="model1" class="modal">
-                            <div class="modal-content">
-                               <h4>请确认！</h4>
-                               <p>确认成功预约后将删除此条记录哦</p>
-                            </div>
-                            <div class="modal-footer">
-                              <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">我知道啦</a>
-                            </div>
-                          </div>
-						</td>
-                    </tr>
+                    <?php
+                        foreach ($result as $row) {
+                            echo "<tr class=\"hoverable\">
+                                <td>".$row['fName']."</td>
+                                <td>".$row['fSID']."</td>
+                                <td>".$row['fPhone']."</td>
+        						<td><a class=\"waves-effect waves-teal btn-flat\" href=\"information.php?id=".$row['id']."\">信息详情</a></td>
+        						<td><a class=\"waves-effect waves-teal btn-flat modal-trigger\" href=\"#model1\">成功预约</a>
+        						  <div id=\"model1\" class=\"modal\">
+                                    <div class=\"modal-content\">
+                                       <h4>请确认！</h4>
+                                       <p>确认成功预约后将删除此条记录哦</p>
+                                    </div>
+                                    <div class=\"modal-footer\">
+                                      <a href=\"#!\" class=\"modal-action modal-close waves-effect waves-green btn-flat\">我知道啦</a>
+                                    </div>
+                                  </div>
+        						</td>
+                            </tr>";
+                        }
+                    ?>
      	    </tbody>
             </table>
 	   </div>
@@ -102,11 +116,11 @@
 
 	</div>
   </div>
-</body>
-
-
-
-
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red"  href="getexcel.php">
+      导出表格
+    </a>
+  </div>
   <footer class="page-footer orange">
     <div class="footer-copyright">
       <div class="container">
@@ -114,12 +128,12 @@
       </div>
     </div>
   </footer>
-
-
   <!--  Scripts-->
-  <script>  $(document).ready(function(){
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function(){
     $('ul.tabs').tabs();
   });</script>
-  <script src="https://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="assets/js/materialize.min.js"></script>
   <script type="text/javascript" src="assets/js/getexcel.js"></script>
+</body>
