@@ -11,8 +11,10 @@ ini_set('display_errors', '1');
         exit('Could not connect: ' . mysql_error());
     }
     $db->query("set names 'utf8'");
-    $sql_query = "SELECT * FROM psycho";
+    $sql_query = "SELECT * FROM psycho WHERE haveRead is null";
     $result = $db->query($sql_query);
+    $s = "SELECT * FROM psycho WHERE haveRead is not null";
+    $result1 = $db->query($s);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,21 +98,22 @@ ini_set('display_errors', '1');
                 <thead>
                     <tr>
                         <th data-field="id">姓名</th>
-                        <th data-field="name">联系方式</th>
-						<th data-field="price">预约星期</th>
-                        <th data-field="price">预约时间</th>
-						<th data-field="price">预约情况</th>
+                        <th data-field="name">学号</th>
+                        <th data-field="price">联系方式</th>
+                        <th>操作</th>
                     </tr>
                 </thead>
                 <tbody class="hoverable">
-                    <tr class="hoverable">
-                        <td><?php echo 1?></td>
-                        <td><?php echo 2?></td>
-						<td><?php echo 3?></td>
-                        <td><?php echo 4?></td>
-						<td>未完成（or）已完成</td>
-						<td><a class="waves-effect waves-teal btn-flat" href="information.php?id=<?php echo 5?>">信息详情</a></td>
-                    </tr>
+                    <?php
+                        foreach ($result1 as $row) {
+                            echo "<tr class=\"hoverable\">
+                                <td>".$row['fName']."</td>
+                                <td>".$row['fSID']."</td>
+                                <td>".$row['fPhone']."</td>
+                                <td><a class=\"waves-effect waves-teal btn-flat\" href=\"information.php?id=".$row['id']."\">信息详情</a></td>
+                            </tr>";
+                        }
+                    ?>
      	   </tbody>
              </table>
 
@@ -134,6 +137,53 @@ ini_set('display_errors', '1');
   $(document).ready(function(){
     $('ul.tabs').tabs();
   });</script>
+  <script type="text/javascript">
+    function change(str)//成功预约按钮
+    {
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+      {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+      }
+    else
+      {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+    xmlhttp.onreadystatechange=function()
+      {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+        document.getElementById(" ").innerHTML=xmlhttp.responseText;//新预约请求的更新
+    	document.getElementById(" ").innerHTML=xmlhttp.responseText;//已完成预约的更新
+        }
+      }
+    xmlhttp.open("GET","?id="+str,true);
+    xmlhttp.send();
+    }
+
+
+    function deleted(str)//删除记录按钮
+    {
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+      {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+      }
+    else
+      {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+    xmlhttp.onreadystatechange=function()
+      {
+      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+        document.getElementById(" ").innerHTML=xmlhttp.responseText;//已完成预约的更新
+        }
+      }
+    xmlhttp.open("GET","?id="+str,true);
+    xmlhttp.send();
+    }
+  </script>
   <script src="assets/js/materialize.min.js"></script>
   <script type="text/javascript" src="assets/js/getexcel.js"></script>
 </body>
