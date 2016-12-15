@@ -47,24 +47,21 @@ ini_set('display_errors', '1');
     <div class="row container">
     <div class="col s12">
     <ul class="tabs">
-      <li class="tab col s6"><a class="active" href="#test1">新预约请求列表</a></li>
-      <li class="tab col s6"><a href="#test2">所有预约记录</a></li>
+      <li class="tab col s6"><a class="active" href="#test1">新预约请求</a></li>
+      <li class="tab col s6"><a href="#test2">已成功预约</a></li>
     </ul>
     </div>
     <div id="test1" class="col s12">
-    <ul class="collapsible" data-collapsible="expandable">
-     <li>
-       <div class="collapsible-header teal lighten-5">Monday</div>
-       <div class="collapsible-body">
             <table class="hoverable">
                 <thead>
                     <tr>
                         <th data-field="id">姓名</th>
                         <th data-field="name">学号</th>
                         <th data-field="price">联系方式</th>
+						<th data-field="price">预约时间（新增的一列，具体看数据库怎么存）</th>
                     </tr>
                 </thead>
-                <tbody class="hoverable">
+                <tbody id="forchange1" class="hoverable">
                     <?php
                         foreach ($result as $row) {
                             echo "<tr class=\"hoverable\">
@@ -72,25 +69,13 @@ ini_set('display_errors', '1');
                                 <td>".$row['fSID']."</td>
                                 <td>".$row['fPhone']."</td>
         						<td><a class=\"waves-effect waves-teal btn-flat\" href=\"information.php?id=".$row['id']."\">信息详情</a></td>
-        						<td><a class=\"waves-effect waves-teal btn-flat modal-trigger\" href=\"#model1\">成功预约</a>
-        						  <div id=\"model1\" class=\"modal\">
-                                    <div class=\"modal-content\">
-                                       <h4>请确认！</h4>
-                                       <p>确认成功预约后将删除此条记录哦</p>
-                                    </div>
-                                    <div class=\"modal-footer\">
-                                      <a href=\"#!\" class=\"modal-action modal-close waves-effect waves-green btn-flat\">我知道啦</a>
-                                    </div>
-                                  </div>
+        						<td><a class=\"waves-effect waves-teal btn-flat modal-trigger\" onclick=\"change($row['id'])\">成功预约</a>
         						</td>
                             </tr>";
                         }
                     ?>
      	    </tbody>
             </table>
-	   </div>
-     </li>
-    </ul>
 	</div>
 
     <div id="test2" class="col s12">
@@ -100,10 +85,10 @@ ini_set('display_errors', '1');
                         <th data-field="id">姓名</th>
                         <th data-field="name">学号</th>
                         <th data-field="price">联系方式</th>
-                        <th>操作</th>
+						<th data-field="price">预约时间（新增的一列，具体看数据库怎么存）</th>
                     </tr>
                 </thead>
-                <tbody class="hoverable">
+                <tbody id="forchange2" class="hoverable">
                     <?php
                         foreach ($result1 as $row) {
                             echo "<tr class=\"hoverable\">
@@ -137,53 +122,42 @@ ini_set('display_errors', '1');
   $(document).ready(function(){
     $('ul.tabs').tabs();
   });</script>
-  <script type="text/javascript">
+ <script type="text/javascript">
     function change(str)//成功预约按钮
     {
-    var xmlhttp;
+    var xmlhttp1;
+	var xmlhttp2;
     if (window.XMLHttpRequest)
       {// code for IE7+, Firefox, Chrome, Opera, Safari
-      xmlhttp=new XMLHttpRequest();
+      xmlhttp1=new XMLHttpRequest();
+	  xmlhttp2=new XMLHttpRequest();
       }
     else
       {// code for IE6, IE5
-      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      xmlhttp1=new ActiveXObject("Microsoft.XMLHTTP");
+	  xmlhttp2=new ActiveXObject("Microsoft.XMLHTTP");
       }
-    xmlhttp.onreadystatechange=function()
+    xmlhttp1.onreadystatechange=function()
       {
-      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      if (xmlhttp1.readyState==4 && xmlhttp1.status==200)
         {
-        document.getElementById(" ").innerHTML=xmlhttp.responseText;//新预约请求的更新
-    	document.getElementById(" ").innerHTML=xmlhttp.responseText;//已完成预约的更新
+        document.getElementById("forchange1").innerHTML=xmlhttp1.responseText;//新预约请求的更新
         }
       }
-    xmlhttp.open("GET","?id="+str,true);
-    xmlhttp.send();
-    }
-
-
-    function deleted(str)//删除记录按钮
-    {
-    var xmlhttp;
-    if (window.XMLHttpRequest)
-      {// code for IE7+, Firefox, Chrome, Opera, Safari
-      xmlhttp=new XMLHttpRequest();
-      }
-    else
-      {// code for IE6, IE5
-      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-      }
-    xmlhttp.onreadystatechange=function()
+	 xmlhttp2.onreadystatechange=function()
       {
-      if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      if (xmlhttp2.readyState==4 && xmlhttp2.status==200)
         {
-        document.getElementById(" ").innerHTML=xmlhttp.responseText;//已完成预约的更新
+    	document.getElementById("forchange2").innerHTML=xmlhttp2.responseText;//已完成预约的更新
         }
       }
-    xmlhttp.open("GET","?id="+str,true);
-    xmlhttp.send();
+    xmlhttp1.open("GET","order.php?q="+str,true);
+    xmlhttp1.send();
+	xmlhttp2.open("GET","order.php?q="+str,true);
+    xmlhttp2.send();
     }
   </script>
+
   <script src="assets/js/materialize.min.js"></script>
   <script type="text/javascript" src="assets/js/getexcel.js"></script>
 </body>
