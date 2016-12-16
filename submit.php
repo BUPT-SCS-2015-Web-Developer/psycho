@@ -59,6 +59,12 @@
     else
         $fReason = addslashes($_POST['fReason']);
 
+    if(isset($_POST['fProblem9']))
+        $fProblem9 = $_POST['fProblem9'];
+    else {
+        $fProblem9 = null;
+    }
+
     $a = array (
             'fName' => addslashes($_POST['fName']),
             'fSID' => addslashes($_POST['fSID']),

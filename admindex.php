@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+ini_set("display_errors", "On");
+error_reporting(E_ALL | E_STRICT);
     session_start();
     date_default_timezone_set('Asia/Shanghai');
     include ('assets/API/db_config.php');
@@ -58,7 +58,8 @@ ini_set('display_errors', '1');
                         <th data-field="id">姓名</th>
                         <th data-field="name">学号</th>
                         <th data-field="price">联系方式</th>
-						<th data-field="price">预约时间（新增的一列，具体看数据库怎么存）</th>
+						<th data-field="time">预约时间</th>
+                        <th data-field="ni_zhege_daodi_youshenmeyong">操作</th>
                     </tr>
                 </thead>
                 <tbody id="forchange1" class="hoverable">
@@ -69,7 +70,7 @@ ini_set('display_errors', '1');
                                 <td>".$row['fSID']."</td>
                                 <td>".$row['fPhone']."</td>
         						<td><a class=\"waves-effect waves-teal btn-flat\" href=\"information.php?id=".$row['id']."\">信息详情</a></td>
-        						<td><a class=\"waves-effect waves-teal btn-flat modal-trigger\" onclick=\"change($row['id'])\">成功预约</a>
+        						<td><a class=\"waves-effect waves-teal btn-flat modal-trigger\" onclick=\"change(".$row['id'].")\">成功预约</a>
         						</td>
                             </tr>";
                         }
@@ -85,7 +86,7 @@ ini_set('display_errors', '1');
                         <th data-field="id">姓名</th>
                         <th data-field="name">学号</th>
                         <th data-field="price">联系方式</th>
-						<th data-field="price">预约时间（新增的一列，具体看数据库怎么存）</th>
+						<th data-field="price">预约时间</th>
                     </tr>
                 </thead>
                 <tbody id="forchange2" class="hoverable">
@@ -151,9 +152,9 @@ ini_set('display_errors', '1');
     	document.getElementById("forchange2").innerHTML=xmlhttp2.responseText;//已完成预约的更新
         }
       }
-    xmlhttp1.open("GET","order.php?q="+str,true);
+    xmlhttp1.open("GET","order.php?id="+str,true);
     xmlhttp1.send();
-	xmlhttp2.open("GET","order.php?q="+str,true);
+	xmlhttp2.open("GET","order.php?id="+str,true);
     xmlhttp2.send();
     }
   </script>
